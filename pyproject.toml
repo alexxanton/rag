@@ -7,10 +7,13 @@ authors = [
     { name = "alexxanton", email = "alexantonaranda@gmail.com" }
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "flake8>=7.3.0",
+    "mypy>=2.3.1",
+]
 
-[project.scripts]
-rag = "rag:main"
+[tool.uv]
+package = false
 
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]

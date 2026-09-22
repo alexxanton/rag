@@ -9,7 +9,6 @@ debug: install
 
 clean:
 	find . -name "__pycache__" -exec rm -r {} +
-	rm -r data/output
 
 lint: install
 	-uv run flake8 src/
