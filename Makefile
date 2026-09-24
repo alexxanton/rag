@@ -1,3 +1,5 @@
+all: run
+
 install:
 	uv sync
 
