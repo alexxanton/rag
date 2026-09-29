@@ -3,7 +3,7 @@ import bm25s
 from pathlib import Path
 
 
-def search_query(query: str = "What is vllm?", k = 5):
+def search_query(query: str, k: int):
     chunks_file = Path("index/chunks.json")
     documents = json.loads(chunks_file.read_text())
 
@@ -24,8 +24,3 @@ def search_query(query: str = "What is vllm?", k = 5):
 
         print(score)
         print(document)
-        """
-        print(document.metadata["file_path"])
-        print(document.metadata["start_index"])
-        print(document.page_content)
-        """

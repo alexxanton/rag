@@ -51,7 +51,7 @@ def save_chunks(chunks):
     chunks_file.parent.mkdir(parents=True, exist_ok=True)
     chunks_file.write_text(json.dumps(data))
 
-def build_index():
+def build_index(max_chunk_size: int):
     index_path = Path("index")
 
     chunks = create_chunks()
