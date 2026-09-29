@@ -4,7 +4,7 @@ install:
 	uv sync
 
 run: install
-	uv run python -m src
+	uv run python -m src index
 
 debug: install
 	uv run python -m pdb -m src
