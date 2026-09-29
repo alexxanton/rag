@@ -3,6 +3,7 @@ import bm25s
 from tqdm import tqdm
 from pathlib import Path
 from langchain_text_splitters import PythonCodeTextSplitter
+from .globals import DOCS_PATH, PROCESSED_PATH
 
 
 def split_file(file):
@@ -24,7 +25,7 @@ def split_file(file):
 
 def create_chunks():
     chunks = []
-    root = "vllm-0.10.1/"
+    root = DOCS_PATH
     files = [
         path
         for path in Path(root).rglob("*")
@@ -37,8 +38,8 @@ def create_chunks():
     return chunks
 
 
-def save_chunks(chunks):
-    chunks_file = Path("index/chunks.json")
+def save_chunks(chunks) -> None:
+    chunks_file = Path(PROCESSED_PATH) / "chunks.json"
 
     data = [
         {
@@ -51,8 +52,8 @@ def save_chunks(chunks):
     chunks_file.parent.mkdir(parents=True, exist_ok=True)
     chunks_file.write_text(json.dumps(data))
 
-def build_index(max_chunk_size: int):
-    index_path = Path("index")
+def build_index(max_chunk_size: int) -> None:
+    index_path = Path(PROCESSED_PATH)
 
     chunks = create_chunks()
     corpus = [
@@ -66,5 +67,5 @@ def build_index(max_chunk_size: int):
     index_path.mkdir(exist_ok=True)
     save_chunks(chunks)
 
-    retriever.save(str(index_path / "bm25"))
+    retriever.save(str(index_path))
     bm25s.tokenize(corpus, return_ids=True)

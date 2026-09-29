@@ -1,14 +1,15 @@
 import json
 import bm25s
 from pathlib import Path
+from .globals import PROCESSED_PATH
 
 
 def search_query(query: str, k: int):
-    chunks_file = Path("index/chunks.json")
+    chunks_file = Path(PROCESSED_PATH) / "chunks.json"
     documents = json.loads(chunks_file.read_text())
 
     retriever = bm25s.BM25.load(
-        "index/bm25",
+        PROCESSED_PATH,
         load_corpus=True
     )
 
