@@ -43,9 +43,12 @@ def save_chunks(chunks) -> None:
 
     data = [
         {
-            "text": chunk.page_content,
+            #"text": chunk.page_content,
             "file_path": chunk.metadata["file_path"],
-            "start_index": chunk.metadata["start_index"],
+            "first_character_index": chunk.metadata["start_index"],
+            "last_character_index": (
+                chunk.metadata["start_index"] + len(chunk.page_content) - 1
+            )
         }
         for chunk in chunks
     ]
