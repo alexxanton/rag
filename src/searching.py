@@ -42,10 +42,11 @@ def search_query(query: str, k: int) -> None:
 
     for chunk_id in results[0]:
         chunk = chunks[chunk_id]
-        start_index = chunk["start_index"]
+        start_index = chunk["first_character_index"]
+        last_index = chunk["last_character_index"]
 
         #print(score)
-        print(chunk["file_path"], f"[{start_index}:{len(chunk['text'])}]")
+        print(chunk["file_path"], f"[{start_index}:{last_index}]")
 
 
 def search_queries(dataset_path: str, k: int, save_directory: str) -> None:
